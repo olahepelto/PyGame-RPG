@@ -1,3 +1,5 @@
+import os
+
 import pygame
 from pygame.locals import *
 from tetriumrpg import entity_handler, sprite_handler
@@ -34,11 +36,18 @@ class App:
         pass
             
     def on_cleanup(self):
+        pygame.mixer.quit()
         pygame.quit()
- 
+        
     def on_execute(self):
         if self.on_init() == False:
             self._running = False
+        
+        pygame.mixer.init()
+        pygame.mixer.music.load(os.path.join(os.path.dirname(__file__), "..\sound\\Pixelland.wav"))
+        
+        pygame.mixer.music.play(-1)
+        
         
         sprite_handler = SpriteHandler()
         entity_handler = EntityHandler()
