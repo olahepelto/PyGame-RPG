@@ -6,7 +6,7 @@ import math
 
 
 class Player(Entity):
-    walk_anim_speed = 140 #200 ms per animation next
+    walk_anim_speed = 140
     last_anim = 0
     
     def __init__(self, location, entity_id, spritesheet, def_sprite_id, map):
@@ -72,13 +72,13 @@ class Player(Entity):
         
     def get_tile_restricted(self, dir):
             if(dir == "r"):
-                return self.map.get_tile(round(self.y/32), round(self.x/32) + 1).metadata["restricted"]
+                return self.map.get_tile(round(self.y/32), round(self.x/32 + 0.5)).metadata["restricted"]
             if(dir == "l"):
-                return self.map.get_tile(round(self.y/32), round(self.x/32) - 1).metadata["restricted"]
+                return self.map.get_tile(round(self.y/32), round(self.x/32 - 0.5)).metadata["restricted"]
             if(dir == "d"):
-                return self.map.get_tile(round(self.y/32) + 1, round(self.x/32)).metadata["restricted"]
+                return self.map.get_tile(round(self.y/32 + 0.5), round(self.x/32)).metadata["restricted"]
             if(dir == "u"):
-                return self.map.get_tile(round(self.y/32) - 1, round(self.x/32)).metadata["restricted"]
+                return self.map.get_tile(round(self.y/32 - 0.5), round(self.x/32)).metadata["restricted"]
             
         
         
