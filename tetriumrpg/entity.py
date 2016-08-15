@@ -1,5 +1,5 @@
 import pygame
-from tetriumrpg.enum import Animation, Window_Definitions
+from enum import Animation, Window_Definitions
 
 
 class Entity(object):

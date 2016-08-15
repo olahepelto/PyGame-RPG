@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-from tetriumrpg.enum import ID
+from enum import ID
 
 class Ticker:
     

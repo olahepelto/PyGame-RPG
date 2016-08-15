@@ -1,6 +1,6 @@
-from tetriumrpg.tile import Tile
-from tetriumrpg.enum import Sprite_ID
-from tetriumrpg.tmx_loader import TmxLoader
+from tile import Tile
+from enum import Sprite_ID
+from tmx_loader import TmxLoader
 class Map:
     map = []
     
@@ -22,4 +22,5 @@ class Map:
             
     def render(self, sprite_handler, _display_surf, player_x, player_y):
         for tile in self.map:
-            tile.render(sprite_handler, _display_surf, player_x, player_y)
+            if(abs(tile.x*32) - abs(player_y) < 32*16 and abs(tile.x*32) - abs(player_y) > -32*16 and abs(tile.y*32) - abs(player_x) < 32*20 and abs(tile.y*32) - abs(player_x) > -32*20):
+                tile.render(sprite_handler, _display_surf, player_x, player_y)

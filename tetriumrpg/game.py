@@ -2,20 +2,20 @@ import os
 
 import pygame
 from pygame.locals import *
-from tetriumrpg import entity_handler, sprite_handler
-from tetriumrpg.entity import Entity
-from tetriumrpg.entity_handler import EntityHandler
-from tetriumrpg.enum import Location, ID, Sprite_ID, Window_Definitions
-from tetriumrpg.map import Map
-from tetriumrpg.player import Player
-from tetriumrpg.renderer import Renderer
-from tetriumrpg.sprite_handler import SpriteHandler
-from tetriumrpg.ticker import Ticker
+import entity_handler, sprite_handler
+from entity import Entity
+from entity_handler import EntityHandler
+from enum import Location, ID, Sprite_ID, Window_Definitions
+from map import Map
+from player import Player
+from renderer import Renderer
+from sprite_handler import SpriteHandler
+from ticker import Ticker
 
 
 class App:
     tps = 24
-    fps = 140
+    fps = 20
     
     sprite_handler = 0
     entity_handler = 0

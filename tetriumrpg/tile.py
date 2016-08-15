@@ -1,4 +1,4 @@
-from tetriumrpg.enum import Window_Definitions
+from enum import Window_Definitions
 import pygame
 
 class Tile:
@@ -23,7 +23,7 @@ class Tile:
         #Thats why the x and y are reversed a bit
         tile_x = (self.y*32 + Window_Definitions.Window_Width/2) - player_x
         tile_y = (self.x*32 + Window_Definitions.Window_Height/2) - player_y
-
+        
         _display_surf.blit(pygame.transform.scale(sprite_handler.get_sprite(self.spritesheet_name,self.sprite), (32,32)),(tile_x,tile_y))
         
         #if(self.metadata["restricted"]):

@@ -1,7 +1,6 @@
 from entity import Entity
 import pygame
-import tetriumrpg
-from tetriumrpg.enum import Window_Definitions
+from enum import Window_Definitions
 import math
 
 

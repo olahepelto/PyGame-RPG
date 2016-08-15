@@ -1,5 +1,5 @@
 import os
-from tetriumrpg.tile import Tile
+from tile import Tile
 
 class TmxLoader:
     map_heigth ={}

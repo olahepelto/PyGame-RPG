@@ -1,6 +1,6 @@
 import pygame
-from tetriumrpg.enum import ID
-from tetriumrpg import sprite_handler
+from enum import ID
+import sprite_handler
 
 class Renderer:
     
