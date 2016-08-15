@@ -1,5 +1,8 @@
 import os
+
+from tetriumrpg.entity import Entity
 from tile import Tile
+
 
 class TmxLoader:
     map_heigth ={}
@@ -76,7 +79,7 @@ class TmxLoader:
             dattta.append(dank_memes)
         return dattta
     
-    def get_objects(self, filename):
+    def get_entities(self, filename):
         objects = []
         new_obj = {}
         
@@ -89,8 +92,13 @@ class TmxLoader:
         xml_data.pop(0)#Delete First Item -> ''
         
         objects = self.get_xml_attr(xml_data)
+        #{'entity_id': '61', 'x': '800', 'id': '17', 'y': '880', 'width': '16', 'height': '16'}
         
-        return objects
+        entities = []
+        for obj in objects:
+            entities.append(Entity([obj["x"], obj["y"]], obj["id"], "Tileset1", int(obj["gid"]) - 1))
+        
+        return entities
     
     def find_between(self, s, first, last):
             start = s.index(first) + len(first)
@@ -109,12 +117,8 @@ class TmxLoader:
             for attr in obj:
                 attr = attr.replace("\"", "").split("=")
                 
-                if(attr[0] == "gid"):
-                    attr[0] = "entity_id"
                 new_obj[attr[0]] = attr[1]
-                
-                        
-                #<object id="17" gid="61" x="800" y="880" width="16" height="16"/>
+
                 
             objects.append(new_obj)
         print(objects)

@@ -9,7 +9,8 @@ class Player(Entity):
     last_anim = 0
     
     def __init__(self, location, entity_id, spritesheet, def_sprite_id, map):
-        super().__init__(location, entity_id, spritesheet, def_sprite_id, map)
+        super().__init__(location, entity_id, spritesheet, def_sprite_id)
+        self.map = map
         
     def moveRight(self):
         tile_right = self.get_tile_restricted("r")
@@ -61,7 +62,7 @@ class Player(Entity):
             self.next_sprite()
             self.last_anim = time_now
     
-    def render(self, sprite_handler, _display_surf):
+    def render(self, sprite_handler, _display_surf, placeholder):
         _display_surf.blit(pygame.transform.scale(sprite_handler.get_sprite(self.spritesheet_name,self.sprite_id), (32,32)),(Window_Definitions.Window_Width/2,Window_Definitions.Window_Height/2))
         
         myfont = pygame.font.SysFont("comicsansms", 30)

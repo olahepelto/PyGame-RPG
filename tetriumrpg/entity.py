@@ -11,22 +11,26 @@ class Entity(object):
     spritesheet_name = 0
     sprite_id = 0
     anim_stage = 1
-    map = None
     
-    def __init__(self, location, entity_id, spritesheet_name, def_sprite_id, map):
-        self.x = location[0]
-        self.y = location[1]
+    def __init__(self, location, entity_id, spritesheet_name, def_sprite_id):
+        self.x = int(location[0])
+        self.y = int(location[1])
         self.entity_id = entity_id
         self.sprite_id = def_sprite_id #DEFAULT
         self.spritesheet_name = spritesheet_name
         self.speed = 5
-        self.map = map
         
-    def render(self, sprite_handler, _display_surf):
+    def render(self, sprite_handler, _display_surf, player_entity):
         ##
         ## Have to take into account how the player moves
         ##
-        _display_surf.blit(pygame.transform.scale(sprite_handler.get_sprite(self.spritesheet_name,self.sprite_id), (32,32)),(self.x*32,self.y*32))
+        
+        draw_x = self.x*2 + Window_Definitions.Window_Width/2 - player_entity.x
+        draw_y = self.y*2 + Window_Definitions.Window_Height/2 - player_entity.y - 32
+        
+        print(str(draw_x) + " " + str(draw_y))
+        
+        _display_surf.blit(pygame.transform.scale(sprite_handler.get_sprite(self.spritesheet_name,self.sprite_id), (32,32)),(draw_x,draw_y))
     
     def set_sprite(self, sprite_id):
         self.sprite_id = sprite_id
