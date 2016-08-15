@@ -11,6 +11,11 @@ from player import Player
 from renderer import Renderer
 from sprite_handler import SpriteHandler
 from ticker import Ticker
+from tmx_loader import TmxLoader
+
+
+
+
 
 
 class App:
@@ -48,10 +53,12 @@ class App:
         
         pygame.mixer.music.play(-1)
         
+        tmx_loader = TmxLoader()
+        map = tmx_loader.load_map("game_map")
         
         sprite_handler = SpriteHandler()
-        entity_handler = EntityHandler()
-        map = Map()
+        entity_handler = EntityHandler(tmx_loader)
+        map = Map(map)
         player = Player(Location.Spawn, ID.Player, "Engineer", Sprite_ID.Player_d4, map)
         entity_handler.add_entity(player)
         

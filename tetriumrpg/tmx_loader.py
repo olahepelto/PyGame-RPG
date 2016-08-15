@@ -76,11 +76,14 @@ class TmxLoader:
             dattta.append(dank_memes)
         return dattta
     
-    def get_objects(self, xml_data):
+    def get_objects(self, filename):
         objects = []
         new_obj = {}
         
-        xml_data = self.find_between(xml_data, "<objectgroup name=\"Objects\">", " </objectgroup>")
+        tmx_file = open(os.path.join(os.path.dirname(__file__), "..\maps\\" + filename + ".tmx"), "r")
+        tmx_file = tmx_file.read()
+        
+        xml_data = self.find_between(tmx_file, "<objectgroup name=\"Objects\">", " </objectgroup>")
         xml_data = xml_data.split("\n")
         xml_data.pop(-1)#Delete Last Item -> ''
         xml_data.pop(0)#Delete First Item -> ''
@@ -101,12 +104,21 @@ class TmxLoader:
         for obj in xml:
             obj = self.find_between(obj, "  <object ", "/>").split(" ")
             
+            new_obj = {}
+            
             for attr in obj:
                 attr = attr.replace("\"", "").split("=")
+                
+                if(attr[0] == "gid"):
+                    attr[0] = "entity_id"
                 new_obj[attr[0]] = attr[1]
+                
+                        
+                #<object id="17" gid="61" x="800" y="880" width="16" height="16"/>
+                
             objects.append(new_obj)
-
-        return attr
+        print(objects)
+        return objects
     
     def load_map(self, filename):
         tile_list = []
@@ -116,7 +128,6 @@ class TmxLoader:
         tmx_file = tmx_file.read()
         
         tile_metadata = self.get_tile_metadata(tmx_file)
-        map_objects = self.get_objects(tmx_file)
         
         tile_list = self.read_csv(tmx_file).split(",")
         
@@ -131,6 +142,4 @@ class TmxLoader:
                 tile_list[i] = int(tile_list[i]) - 1
                 map.append(Tile(x, y, tile_list[i], tile_metadata[tile_list[i]][0])) # -1 to sprite_id to repair weird bug
                 i += 1
-        
-        print(map)
         return map

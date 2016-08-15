@@ -4,16 +4,10 @@ from tmx_loader import TmxLoader
 class Map:
     map = []
     
-    def __init__(self):
-        self.map = self.load_map()
-    
-    def load_map(self):
-        tmx_loader = TmxLoader()
-        map = tmx_loader.load_map("game_map")
-                
-        print("Map Loaded!") 
-        return map
-       
+    def __init__(self, map):
+        self.map = map
+        print("Map Loaded!")
+        
     def get_tile(self, x, y):
         for tile in self.map:
             if(tile != None):

@@ -21,7 +21,6 @@ class Entity(object):
         self.spritesheet_name = spritesheet_name
         self.speed = 5
         self.map = map
-        print(location)
         
     def render(self, sprite_handler, _display_surf):
         ##
