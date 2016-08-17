@@ -1,27 +1,25 @@
+from enum import Location, ID, Sprite_ID, Window_Definitions
 import os
 
 import pygame
 from pygame.locals import *
-import entity_handler, sprite_handler
+
 from entity import Entity
 from entity_handler import EntityHandler
-from enum import Location, ID, Sprite_ID, Window_Definitions
+import entity_handler, sprite_handler
 from map import Map
 from player import Player
 from renderer import Renderer
 from sprite_handler import SpriteHandler
 from ticker import Ticker
 from tmx_loader import TmxLoader
-
-
-
-
+from inv import Inv
 
 
 class App:
     tps = 24
-    fps = 20
-    
+    fps = 25
+       
     sprite_handler = 0
     entity_handler = 0
     
@@ -60,6 +58,7 @@ class App:
         entity_handler = EntityHandler(tmx_loader)
         map = Map(map)
         player = Player(Location.Spawn, ID.Player, "Engineer", Sprite_ID.Player_d4, map)
+        inv = Inv(None)
         entity_handler.add_entity(player)
         
         renderer = Renderer(entity_handler, sprite_handler, self._display_surf)
@@ -79,7 +78,7 @@ class App:
                 tick += 1
                 
             if(time_now > time_next_render):
-                renderer.render(entity_handler, map)
+                renderer.render(entity_handler, map, inv)
                 time_next_render = time_now + 1000 / self.fps
                 render += 1
                     

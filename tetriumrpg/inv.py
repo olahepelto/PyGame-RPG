@@ -1,0 +1,33 @@
+from pygame import Color
+import pygame
+
+class Inv:
+    contents = []
+    
+    #Inventory Layout
+    #
+    # 0  1  2  3  4  5  6
+    # 7  8  9 10 11 12 13
+    # 14 15 16 17 18 19 20
+    # 21 22 23 24 25 26 27
+    # 28 29 30 31 32 33 34
+    #
+    
+    def __init__(self, contents):
+        self.contents = contents #Index = See inventory layout
+    
+    def add_stack(self, item_stack):
+        if("" in self.contents):
+            contents[self.contents.index("")] = item_stack
+        else:
+            if(len(self.contents) < 35):
+                contents.append(item_stack)
+    
+    def modify_stack(self, slot, new_stack):
+        self.contents[slot] = new_stack
+    
+    def del_stack(self, slot):
+        self.contents[slot] = ""
+    
+    def render(self, sprite_handler, _display_surf):
+        pygame.draw.rect(_display_surf, Color(255,255,255), [10,10,20,20], 5)

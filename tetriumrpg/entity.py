@@ -28,8 +28,6 @@ class Entity(object):
         draw_x = self.x*2 + Window_Definitions.Window_Width/2 - player_entity.x
         draw_y = self.y*2 + Window_Definitions.Window_Height/2 - player_entity.y - 32
         
-        print(str(draw_x) + " " + str(draw_y))
-        
         _display_surf.blit(pygame.transform.scale(sprite_handler.get_sprite(self.spritesheet_name,self.sprite_id), (32,32)),(draw_x,draw_y))
     
     def set_sprite(self, sprite_id):

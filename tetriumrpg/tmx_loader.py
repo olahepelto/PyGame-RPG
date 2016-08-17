@@ -1,6 +1,6 @@
 import os
 
-from tetriumrpg.entity import Entity
+from entity import Entity
 from tile import Tile
 
 
