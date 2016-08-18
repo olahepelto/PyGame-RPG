@@ -73,3 +73,6 @@ class Animation:
 class Window_Definitions:
     Window_Width = 1200
     Window_Height = 800
+
+class MovementPattern:
+    Generic = 0
