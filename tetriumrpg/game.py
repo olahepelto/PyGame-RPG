@@ -62,7 +62,7 @@ class App:
         entity_handler.add_entity(player)
         
         renderer = Renderer(entity_handler, sprite_handler, self._display_surf)
-        ticker = Ticker(entity_handler, self)
+        ticker = Ticker(entity_handler, self, inv)
         
         time_next_tick = 0
         time_next_render = 0

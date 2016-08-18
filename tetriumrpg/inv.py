@@ -3,6 +3,7 @@ import pygame
 
 class Inv:
     contents = []
+    selected = 0
     
     #Inventory Layout
     #
@@ -15,7 +16,8 @@ class Inv:
     
     def __init__(self, contents):
         self.contents = contents #Index = See inventory layout
-    
+        self.selected = 0
+        
     def add_stack(self, item_stack):
         if("" in self.contents):
             contents[self.contents.index("")] = item_stack
@@ -30,4 +32,11 @@ class Inv:
         self.contents[slot] = ""
     
     def render(self, sprite_handler, _display_surf):
-        pygame.draw.rect(_display_surf, Color(255,255,255), [10,10,20,20], 5)
+        for i in range(0,8):
+            if(i == self.selected):
+                pygame.draw.rect(_display_surf, Color(255,255,255), [18 + 40 * i + 32,50,32,32], 2)
+            else:
+                pygame.draw.rect(_display_surf, Color(0,0,0), [18 + 40 * i + 32,50,32,32], 2)
+                
+    def select(self, select_id):
+        self.selected = select_id - 1
